@@ -4,14 +4,50 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Template</title>
-  <!-- Style in head -->
+  <title>Pronunciation Flashcards</title>
   <link rel="icon" type="image/png" href="https://www.google.com/s2/favicons?domain=css-tricks.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"> 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">  
   <link rel="stylesheet" href="style.css">
 </head>
-<!-- Script in body -->
 <body>
+  <div class="body-container" id="body-container">
+    <div class="question-container" id="question-container">
+      <p class="question" id="question"></p>
+      <span class="part-of-speech" id="part-of-speech"></span>
+    </div>
+    <div class="border" id="border"></div>
+    <div class="answer-container" id="answer-container">
+      <p class="answer" id="answer"></p>
+    </div>
+      <div class="content" id="content">
+        <div class="meaning">
+          <div class="details">
+            <span id="meaning"></span>
+          </div>
+        </div>
+        <div class="example">
+          <div class="details">
+            <span id="example"></span>
+          </div>
+        </div>
+      </div>     
+  </div>
+  <div class="button-container" id="button-container">
+    <div class="buttons" id="buttons">
+      <button id="fail" title="Shortcut key: 7">Fail</button>   
+      <button id="good" title="Shortcut key: 8">Good</button>
+    </div>
+  </div>
+  <audio id="oxford-audio" src="" controls hidden></audio>
+  <audio id="cambridge-audio" src="" controls hidden></audio>
+  <audio id="audio-element-3" src="" controls hidden></audio>
+  <audio id="audio-element-4" src="" controls hidden></audio>
+  <button class="audio" id="audio1" title="Shortcut key: 3"><i class="fa-solid fa-volume-high"></i></button>
+  <button class="audio" id="audio2" title="Shortcut key: 4"><i class="fa-solid fa-volume-high"></i></button>
+  <div class="finish-message" id="finish-message" hidden>
+    <h1>You have finished the deck.</h1>
+  </div>
   <script src="script.js"></script>
 </body>
 </html> 

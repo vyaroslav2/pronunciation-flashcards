@@ -1,9 +1,191 @@
-  html {
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+  
+  * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
   }
 
   body {
-    margin: 0;
-    min-height: 100vh;
-    background: dodgerblue;
+    font-family: Inter Regular, Roboto, sans-serif;
+    height: fit-content;
+    margin-bottom: 180px;
+    background: rgb(43, 43, 43);
+    color: rgb(169, 183, 198);
+    font-size: 76px;
+    font-weight: 300;
   }
+
+  .body-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  #buttons {
+    position: fixed;
+    width: 100%;
+    background: rgb(60, 63, 65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    bottom: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  button {
+    outline: none;
+    align-items: center;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    flex-grow: 1;
+    font-family: Inter, Arial, Roboto, sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    height: 80px;
+    justify-content: center;
+    position: relative;
+    max-width: 192px;
+    color: rgb(196, 196, 196);
+  }
+
+#fail {
+  background: rgb(199, 84, 80);
+  margin-right: 20px;
+}
+
+#good {
+  background: rgb(106, 135, 89);
+  margin-left: 20px;
+}
+
+#question {
+  font-family: Inter Regular, Roboto, sans-serif;
+  font-weight: 300;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 0px;
+}
+
+.part-of-speech {
+  padding-top: 10px;
+  font-size: 24px; 
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(169, 183, 198, 0.5);
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+  margin: auto;
+} 
+
+.question {
+  text-align: center;
+}
+
+.question-container .part-of-speech {
+  padding-left: 8px;
+  margin-top: -28px;
+  margin-bottom: 0px;
+}
+
+.border {
+  background: rgb(81, 81, 81);
+  height: 1.5px;
+  display: flex;
+  margin: 0 3rem;
+  padding: 0;
+}
+
+.answer-container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: block;
+}
+
+.answer {
+  text-align: center;
+  font-family: Inter, Roboto, Arial, sans-serif;
+  font-weight: 300;
+  display: block;
+}
+
+.content {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  margin: 0 auto;
+  border-top: 1.5px solid rgb(81, 81, 81);
+  flex: 1;
+}
+
+.details {
+  flex: 1;
+}
+
+.example {
+  border-left: 5px solid rgb(60, 143, 173);
+  padding-left: 12px;
+  background-color: rgb(78, 80, 82);
+  margin-top: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-style: italic;
+  overflow-x:auto;
+  flex: 1;
+}
+
+.meaning {
+  flex: 1;
+  margin-top: 30px;
+  padding-left: 7px;
+  overflow-x:auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(43, 43, 43);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(78, 78, 78);
+}
+
+.audio {
+ position: absolute;
+ z-index: 10;
+ height: 80px; 
+ width: 80px;
+ margin-top: 1.5px;
+ background-color: rgb(60, 63, 65);
+ color: rgb(175, 177, 179);
+ top: 333px;
+}
+
+#audio2 {
+  margin-top: 83px;
+}
+
+#finish-message h1{
+  font-size: 76px;
+  font-family: Inter, Arial, Roboto, sans-serif;
+  font-weight: 300;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
