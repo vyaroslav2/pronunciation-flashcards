@@ -19,7 +19,7 @@ const border = document.getElementById("border");
 
 
 let savedData; 
-let oldData;
+let oldData = [];
 let storedArray = [];
 let indexOfWordsArray;
 let countGoodBtnPressed = 0; 
@@ -49,7 +49,21 @@ let wordsArray = [
   },
 ]
 
+// function sleep(ms) {
+//   return new Promise(resolve => setTimeout(resolve, ms));
+// }
+
+function stopAudioPlay() {
+  oxfordAudio.pause();
+  oxfordAudio.currentTime = 0;
+  oxfordAudio.src = ``;
+  cambridgeAudio.pause();
+  cambridgeAudio.currentTime = 0;
+  cambridgeAudio.src = ``;
+}
+
 function playOxfordSound() {
+    // await sleep(2000);
     oxfordAudio.src = `${word.word}-oxford-uk.mp3`;
     oxfordAudio.onloadedmetadata = () => {
       oxfordAudio.play();
@@ -57,6 +71,7 @@ function playOxfordSound() {
   }
 
 function playCambridgeSound() {
+  // await sleep(2000);
   cambridgeAudio.src = `${word.word}-cambridge-uk.mp3`;
   cambridgeAudio.onloadedmetadata = () => {
     cambridgeAudio.play();
@@ -98,6 +113,16 @@ function toggleContentVisibility(el) {
 }
 
 function getWord() {
+  if (!localStorage.getItem("storedArray")) {
+    localStorage.setItem("storedArray", JSON.stringify(wordsArray));
+    oldData = JSON.parse(localStorage.getItem("storedArray"));
+  } else {
+    oldData = JSON.parse(localStorage.getItem("storedArray"));
+  }
+  if (oldData.length === 0) {
+    deckFinished();
+  } else { 
+    stopAudioPlay();
   toggleContentVisibility(answerContainer);
   toggleContentVisibility(buttonContainer);
   toggleContentVisibility(content);
@@ -107,6 +132,7 @@ function getWord() {
   indexOfWordsArray = Math.floor(Math.random() * wordsArray.length);
   word = wordsArray[indexOfWordsArray];  
   displayWord();
+  }
 }
 
 document.addEventListener("keypress", e => {
@@ -118,6 +144,7 @@ document.addEventListener("keypress", e => {
     toggleContentVisibility(oxfordBtn);
     toggleContentVisibility(cambridgeBtn);
     playSoundRandomly();
+    
     }
   }
 });
@@ -148,11 +175,11 @@ document.addEventListener("keypress", e => {
 })
 
 function delayedCambridgeSound() {
-  setTimeout(playCambridgeSound, 320);
+  playCambridgeSound();
 }
 
 function delayedOxfordSound() {
-  setTimeout(playOxfordSound, 320);
+  playOxfordSound();
 }
 
 function oxfordPlayOnClick() {
@@ -170,13 +197,15 @@ function cambridgePlayOnClick() {
 }
 
 function failBtnClick() {
+  stopAudioPlay();
   getWord();
 }
 
 function goodBtnClick() {
+  stopAudioPlay();
   goodBtn.disabled = true;
   saveUserProgress();
-  getWord();
+  // getWord();
 }
 
 function checkTheCount() {
@@ -186,6 +215,7 @@ function checkTheCount() {
   } 
   localStorage.setItem("storedArray", JSON.stringify(savedData));
   wordsArray = savedData;
+  getWord();
 }
 
 function deckFinished() {
@@ -206,25 +236,38 @@ function deckFinished() {
 }
 
 function saveUserProgress() {
-  if (!localStorage.getItem("storedArray")) {
-    localStorage.setItem("storedArray", JSON.stringify(wordsArray));
-  } else {
-    oldData = JSON.parse(localStorage.getItem("storedArray"));
-  }
-  // console.log(oldData.length);
-  if (oldData.length === 0) {
-    deckFinished();
-  }
+  // if (!localStorage.getItem("storedArray")) {
+  //   localStorage.setItem("storedArray", JSON.stringify(wordsArray));
+  //   oldData = JSON.parse(localStorage.getItem("storedArray"));
+  // } else {
+  //   oldData = JSON.parse(localStorage.getItem("storedArray"));
+  // }
+  
+  // if (oldData.length === 0) {
+  //   deckIsFinishedVar = true;
+  //   console.log(deckFinished);
+  //   // deckFinished();
+  // }
   if (oldData[indexOfWordsArray].count) {
     oldData[indexOfWordsArray].count++;
+    console.log(oldData[indexOfWordsArray].word, oldData[indexOfWordsArray].count);
   } else {
     oldData[indexOfWordsArray].count = 1;
+    console.log(oldData[indexOfWordsArray].word, oldData[indexOfWordsArray].count);
   }
   localStorage.setItem("storedArray", JSON.stringify(oldData));
   checkTheCount();
 }
 
+
+  // if (oldData.length > 0) {
+  //   getWord();
+  // } else {
+  //   deckFinished();
+  // }
+
 getWord();
+
 
 oxfordBtn.addEventListener("click", oxfordPlayOnClick);
 cambridgeBtn.addEventListener("click", cambridgePlayOnClick);
